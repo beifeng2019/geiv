@@ -1,0 +1,57 @@
+attribute float sys_pIndex;
+varying vec4 c;
+uniform float cR;
+uniform float cG;
+uniform float cB;
+void main(void)
+{
+	float R;
+	float G;
+	float B;
+	if(sys_pIndex == 0.0)
+	{
+		R = cR;
+		G = cG;
+		B = cB;
+	}
+	else if(sys_pIndex == 1.0)
+	{
+		R = cR - 1.0;
+		if(R < 0)
+		{
+			R = - R;
+		}
+		G = cG + 1.0;
+		if(G > 1.0)
+		{
+			G = 1.0 - G;
+		}
+		B = cB;
+	}
+	else if(sys_pIndex == 2.0)
+	{
+		R = cR - 1.0;
+		if(R < 0)
+		{
+			R = - R;
+		}
+		B = cB + 1.0;
+		if(B > 1.0)
+		{
+			B = 1.0 - B;
+		}
+		G = cG;
+	}
+	else
+	{
+		R = cR;
+		G = cG + 1.0;
+		if(G > 1.0)
+		{
+			G = 1.0 - G;
+		}
+		B = cB;
+	}
+	c = vec4(R,G,B,1.0);
+	gl_Position = ftransform();
+}

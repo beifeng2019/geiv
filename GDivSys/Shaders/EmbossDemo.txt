@@ -1,0 +1,26 @@
+const int g_iWeightNumber = 9;
+                                    
+uniform sampler2D g_FilterTexture;  // 被过滤纹理
+uniform float g_aryWeight[g_iWeightNumber]; // Blur权重数组
+uniform vec2 g_aryOffset[g_iWeightNumber];  // 横向Blur偏移数组
+void main()
+{
+    vec4 vec4Sum = vec4(0.0);
+    if (gl_TexCoord[0].s < 0.495)
+    {
+        for(int i = 0; i < g_iWeightNumber; ++i)
+        {
+            vec4Sum += texture2D(g_FilterTexture, gl_TexCoord[0].st + g_aryOffset[i])*g_aryWeight[i];
+        }
+        vec4Sum += 0.5;
+    }
+    else if (gl_TexCoord[0].s > 0.505)
+    {
+        vec4Sum = texture2D(g_FilterTexture, gl_TexCoord[0].st);
+    }
+    else
+    {
+        vec4Sum = vec4(1.0, 0.0, 0.0, 1.0);
+    }
+    gl_FragColor = vec4Sum;
+}

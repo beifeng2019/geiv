@@ -1,0 +1,5 @@
+void main(void)
+{
+	gl_FragColor.rgb = 1.0 - gl_Color.rgb;
+	gl_FragColor.a = 1.0 - gl_Color.a;
+}
