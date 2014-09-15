@@ -980,7 +980,9 @@ public class Obj implements MouseFactor, KeyFactor, CANKeySet, CANLineWidth,
 		}
 		return 0;
 	}
-
+	public float getRefDistance(Obj O){
+		return getRefDistance(O.getPObj(0));
+	}
 	@Override
 	public float getRefDistance(PObj PO) {
 		return getRefDistance(0, PO);
@@ -1012,7 +1014,9 @@ public class Obj implements MouseFactor, KeyFactor, CANKeySet, CANLineWidth,
 		}
 		return 0;
 	}
-
+	public float getRefTheta(Obj O){
+		return getRefTheta(O.getPObj(0));
+	}
 	@Override
 	public float getRefTheta(PObj PO) {
 		return getRefTheta(0, PO);
